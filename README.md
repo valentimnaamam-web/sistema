@@ -42,7 +42,26 @@ estar logado, o sistema detecta (via `common.js`) e manda de volta para
 
 ---
 
-## 2. Como configurar o Firebase (gratuito, ~5 minutos)
+## 2. Modo demonstração (testar agora, sem configurar nada)
+
+Enquanto o arquivo `js/firebase-config.js` ainda estiver com as chaves de
+exemplo, o sistema entra sozinho em **modo demonstração**: os dados ficam
+salvos só no navegador (localStorage) e o login de teste já funciona na
+hora — é só abrir o site publicado e clicar em "Entrar" (os campos já vêm
+preenchidos com `teste@teste.com` / `teste123`).
+
+Um aviso amarelo aparece no topo da tela avisando que está em modo
+demonstração. Nesse modo, os dados **não são compartilhados entre
+aparelhos/navegadores** — cada um vê só o que ele mesmo cadastrou. É só
+para você testar o site publicado antes de configurar o Firebase de
+verdade.
+
+Quando quiser ligar ao banco de dados de verdade (pra usar em produção,
+com dados compartilhados entre todos os computadores da portaria), siga o
+passo a passo abaixo e cole suas chaves em `js/firebase-config.js` — o
+aviso de demonstração desaparece automaticamente assim que isso for feito.
+
+## 3. Como configurar o Firebase de verdade (gratuito, ~5 minutos)
 
 1. Acesse **https://console.firebase.google.com** e faça login com uma conta Google.
 2. Clique em **"Adicionar projeto"**, dê um nome (ex: `controle-atrasos-colegio`) e conclua a criação.
@@ -85,7 +104,7 @@ estar logado, o sistema detecta (via `common.js`) e manda de volta para
 
 ---
 
-## 3. Como publicar no GitHub Pages
+## 4. Como publicar no GitHub Pages
 
 1. Crie um repositório novo no GitHub (ex: `controle-atrasos`).
 2. Envie **todos** os arquivos desta pasta (todos os `.html`, `css/`, `js/`, `README.md`) para o repositório.
@@ -101,7 +120,7 @@ estar logado, o sistema detecta (via `common.js`) e manda de volta para
 
 ---
 
-## 4. Como usar o sistema
+## 5. Como usar o sistema
 
 1. Acesse o site → tela de login → **menu principal** com 5 opções.
 2. **Cadastro de Turma**: adicione as turmas (nome + turno).
@@ -117,7 +136,7 @@ estar logado, o sistema detecta (via `common.js`) e manda de volta para
 
 ---
 
-## 5. Próximos passos possíveis
+## 6. Próximos passos possíveis
 - Login individual por funcionário (só criar mais usuários no Authentication).
 - Trocar as cores do sistema: edite as variáveis no topo de `css/style.css`.
 - Importar lista de alunos em massa a partir de uma planilha.
