@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Controle de Atrasos — Cadastro de Turma</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<div id="app">
+  <header class="topbar">
+    <a href="menu.html" class="marca">
+      <div class="icone">⏰</div>
+      <div>
+        <h1>Controle de Atrasos</h1>
+        <p>Sistema de Registro e Relatórios</p>
+      </div>
+    </a>
+    <div class="usuario">
+      <span>👤 <span id="usuario-email">—</span> ⌄</span>
+      <button id="btn-sair" title="Sair">⏻</button>
+    </div>
+  </header>
+
+  <div class="layout">
+    <nav class="sidebar">
+      <a href="frequencia.html" id="nav-frequencia">🕐 <span class="rotulo">Frequência</span></a>
+      <a href="turmas.html" id="nav-turmas" class="ativo">🏠 <span class="rotulo">Turmas</span></a>
+      <a href="alunos.html" id="nav-alunos">👥 <span class="rotulo">Alunos</span></a>
+      <a href="relatorios.html" id="nav-relatorios">📊 <span class="rotulo">Relatórios</span></a>
+      <a href="configuracoes.html" id="nav-configuracoes">⚙️ <span class="rotulo">Configurações</span></a>
+    </nav>
+
+    <main class="conteudo">
+      <div class="cabecalho-pagina">
+        <h2>🎓 Cadastro de Turma</h2>
+        <button id="btn-add-turma" class="btn btn-primary">+ Adicionar turma</button>
+      </div>
+      <div class="cartao">
+        <table>
+          <thead><tr><th>Nº</th><th>Turma</th><th>Turno</th><th>Qtd. de alunos</th><th>Ações</th></tr></thead>
+          <tbody id="tbody-turmas"></tbody>
+        </table>
+      </div>
+    </main>
+  </div>
+</div>
+
+<!-- MODAL: TURMA -->
+<div class="modal-fundo" id="modal-turma">
+  <form class="modal" id="form-turma">
+    <h3 id="modal-turma-titulo">Adicionar turma</h3>
+    <input type="hidden" id="input-turma-id">
+    <div class="campo">
+      <label>Nome da turma</label>
+      <input type="text" id="input-turma-nome" required placeholder="Ex: Turma A">
+    </div>
+    <div class="campo">
+      <label>Turno</label>
+      <select id="input-turma-turno">
+        <option>Manhã</option>
+        <option>Tarde</option>
+      </select>
+    </div>
+    <div class="acoes-modal">
+      <button type="button" class="btn btn-ghost" id="btn-cancelar-turma">Cancelar</button>
+      <button type="submit" class="btn btn-primary">Salvar</button>
+    </div>
+  </form>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
+<script src="js/firebase-config.js"></script>
+<script src="js/common.js"></script>
+<script src="js/turmas.js"></script>
+</body>
+</html>

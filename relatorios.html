@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Controle de Atrasos — Relatórios</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<div id="app">
+  <header class="topbar">
+    <a href="menu.html" class="marca">
+      <div class="icone">⏰</div>
+      <div>
+        <h1>Controle de Atrasos</h1>
+        <p>Sistema de Registro e Relatórios</p>
+      </div>
+    </a>
+    <div class="usuario">
+      <span>👤 <span id="usuario-email">—</span> ⌄</span>
+      <button id="btn-sair" title="Sair">⏻</button>
+    </div>
+  </header>
+
+  <div class="layout">
+    <nav class="sidebar">
+      <a href="frequencia.html" id="nav-frequencia">🕐 <span class="rotulo">Frequência</span></a>
+      <a href="turmas.html" id="nav-turmas">🏠 <span class="rotulo">Turmas</span></a>
+      <a href="alunos.html" id="nav-alunos">👥 <span class="rotulo">Alunos</span></a>
+      <a href="relatorios.html" id="nav-relatorios" class="ativo">📊 <span class="rotulo">Relatórios</span></a>
+      <a href="configuracoes.html" id="nav-configuracoes">⚙️ <span class="rotulo">Configurações</span></a>
+    </nav>
+
+    <main class="conteudo">
+      <div class="cabecalho-pagina"><h2 id="titulo-pagina-relatorios">📊 Relatório de Atrasos — Turno</h2></div>
+
+      <div class="abas-relatorio">
+        <button class="aba-relatorio ativa" data-aba="turno" id="aba-btn-turno">Por turno</button>
+        <button class="aba-relatorio" data-aba="mensal" id="aba-btn-mensal">Mensal</button>
+      </div>
+
+      <div class="cartao" id="aba-relatorio-turno">
+        <div class="linha-form linha-form-inline">
+          <div class="campo campo-inline">
+            <label>Turma:</label>
+            <select id="select-relatorio-turma"></select>
+          </div>
+          <div class="campo campo-inline">
+            <label>Turno:</label>
+            <select id="select-relatorio-turno">
+              <option>Manhã</option>
+              <option>Tarde</option>
+            </select>
+          </div>
+          <div class="campo campo-inline">
+            <label>Data:</label>
+            <input type="date" id="input-relatorio-data">
+          </div>
+          <button id="btn-gerar-relatorio-turno" class="btn btn-primary">🔍 Gerar relatório</button>
+        </div>
+
+        <div id="resultado-relatorio-turno" style="display:none;">
+          <hr class="divisor-relatorio">
+          <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:12px;">
+            <strong id="titulo-relatorio-turno" style="text-transform:uppercase; letter-spacing:.02em; font-size:13.5px;"></strong>
+            <p class="info-sub" id="subtitulo-relatorio-turno" style="margin:0;"></p>
+          </div>
+          <table>
+            <thead><tr><th>Aluno</th><th>Qtd. de atrasos</th><th>Total de minutos</th></tr></thead>
+            <tbody id="tbody-relatorio-turno"></tbody>
+          </table>
+          <div class="grid-stats" style="margin-top:16px;">
+            <div class="stat-card">
+              <div class="stat-icone">👥</div>
+              <div class="stat-label">Total de alunos com atraso</div>
+              <div class="stat-valor" id="stat-alunos-atraso-turno">0</div>
+            </div>
+            <div class="stat-card stat-roxo">
+              <div class="stat-icone">⏱️</div>
+              <div class="stat-label">Total de atrasos no turno</div>
+              <div class="stat-valor" id="stat-total-atrasos-turno">0</div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-icone">🕒</div>
+              <div class="stat-label">Total de minutos de atraso</div>
+              <div class="stat-valor" id="stat-total-minutos-turno">0 min</div>
+            </div>
+          </div>
+          <div class="acoes-tabela" style="margin-top:14px;">
+            <button class="btn btn-cinza btn-sm" id="btn-imprimir-turno">🖨️ Imprimir</button>
+            <button class="btn btn-primary btn-sm" id="btn-pdf-turno">📄 Gerar PDF</button>
+            <button class="btn btn-success btn-sm" id="btn-exportar-turno">📊 Exportar Excel</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="cartao" id="aba-relatorio-mensal" style="display:none;">
+        <div class="linha-form linha-form-inline">
+          <div class="campo campo-inline">
+            <label>Mês:</label>
+            <select id="select-relatorio-mes">
+              <option value="1">Janeiro</option><option value="2">Fevereiro</option><option value="3">Março</option>
+              <option value="4">Abril</option><option value="5">Maio</option><option value="6">Junho</option>
+              <option value="7">Julho</option><option value="8">Agosto</option><option value="9">Setembro</option>
+              <option value="10">Outubro</option><option value="11">Novembro</option><option value="12">Dezembro</option>
+            </select>
+          </div>
+          <div class="campo campo-inline">
+            <label>Ano:</label>
+            <input type="number" id="select-relatorio-ano" value="2026" style="width:100px;">
+          </div>
+          <button id="btn-gerar-relatorio-mensal" class="btn btn-primary">🔍 Gerar relatório</button>
+        </div>
+
+        <div id="resultado-relatorio-mensal" style="display:none;">
+          <hr class="divisor-relatorio">
+          <strong id="titulo-relatorio-mensal" style="text-transform:uppercase; letter-spacing:.02em; font-size:13.5px;"></strong>
+          <div class="grid-stats" style="margin-top:12px;">
+            <div class="stat-card"><div class="stat-icone">👥</div><div class="stat-label">Alunos com atraso</div><div class="stat-valor" id="stat-alunos-mes">0</div></div>
+            <div class="stat-card stat-vermelho"><div class="stat-icone">⏱️</div><div class="stat-label">Atrasos no mês</div><div class="stat-valor" id="stat-atrasos-mes">0</div></div>
+            <div class="stat-card stat-verde"><div class="stat-icone">🕒</div><div class="stat-label">Total de minutos</div><div class="stat-valor" id="stat-minutos-mes">0 min</div></div>
+            <div class="stat-card stat-roxo"><div class="stat-icone">📈</div><div class="stat-label">Média por atraso</div><div class="stat-valor" id="stat-media-mes">0 min</div></div>
+          </div>
+          <div style="display:grid; grid-template-columns:1.3fr 1fr; gap:16px; margin-top:16px;">
+            <div>
+              <h4>Ranking — alunos com mais atrasos</h4>
+              <table>
+                <thead><tr><th>Pos.</th><th>Aluno</th><th>Nº de atrasos</th><th>Total de horas</th><th>Média por atraso</th></tr></thead>
+                <tbody id="tbody-ranking-mensal"></tbody>
+              </table>
+            </div>
+            <div>
+              <h4>Gráfico de atrasos por turma</h4>
+              <div id="grafico-turmas-mensal"></div>
+            </div>
+          </div>
+          <div class="acoes-tabela" style="margin-top:14px;">
+            <button class="btn btn-cinza btn-sm" id="btn-imprimir-mensal">🖨️ Imprimir</button>
+            <button class="btn btn-primary btn-sm" id="btn-pdf-mensal">📄 Gerar PDF</button>
+            <button class="btn btn-success btn-sm" id="btn-exportar-mensal">📊 Exportar Excel</button>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
+<script src="js/firebase-config.js"></script>
+<script src="js/common.js"></script>
+<script src="js/relatorios.js"></script>
+</body>
+</html>

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Controle de Atrasos — Login</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<!-- =============== TELA DE LOGIN =============== -->
+<div id="tela-login">
+  <form id="form-login" class="login-card">
+    <div class="logo-icone">⏰</div>
+    <h1>Controle de Atrasos</h1>
+    <p class="subtitulo">Acesso restrito à equipe da portaria</p>
+    <div class="campo">
+      <label for="login-email">E-mail</label>
+      <input id="login-email" type="email" required autocomplete="username" placeholder="teste@teste.com" value="teste@teste.com">
+    </div>
+    <div class="campo">
+      <label for="login-senha">Senha</label>
+      <input id="login-senha" type="password" required autocomplete="current-password" placeholder="teste123" value="teste123">
+    </div>
+    <button type="submit" class="btn btn-primary btn-full" id="btn-entrar">Entrar</button>
+    <div class="erro-msg" id="login-erro"></div>
+    <p style="font-size:12px; color:var(--color-text-muted); margin-top:14px;">
+      Login de teste pré-preenchido: <strong>teste@teste.com</strong> / <strong>teste123</strong><br>
+      (crie esse usuário no Firebase Authentication — veja o README)
+    </p>
+  </form>
+</div>
+
+<!-- SDKs do Firebase (compat, sem precisar de build) -->
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
+
+<script src="js/firebase-config.js"></script>
+<script src="js/auth.js"></script>
+</body>
+</html>

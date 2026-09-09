@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Controle de Atrasos — Controle de Frequência</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<div id="app">
+  <header class="topbar">
+    <a href="menu.html" class="marca">
+      <div class="icone">⏰</div>
+      <div>
+        <h1>Controle de Atrasos</h1>
+        <p>Sistema de Registro e Relatórios</p>
+      </div>
+    </a>
+    <div class="usuario">
+      <span>👤 <span id="usuario-email">—</span> ⌄</span>
+      <button id="btn-sair" title="Sair">⏻</button>
+    </div>
+  </header>
+
+  <div class="layout">
+    <nav class="sidebar">
+      <a href="frequencia.html" id="nav-frequencia" class="ativo">🕐 <span class="rotulo">Frequência</span></a>
+      <a href="turmas.html" id="nav-turmas">🏠 <span class="rotulo">Turmas</span></a>
+      <a href="alunos.html" id="nav-alunos">👥 <span class="rotulo">Alunos</span></a>
+      <a href="relatorios.html" id="nav-relatorios">📊 <span class="rotulo">Relatórios</span></a>
+      <a href="configuracoes.html" id="nav-configuracoes">⚙️ <span class="rotulo">Configurações</span></a>
+    </nav>
+
+    <main class="conteudo">
+      <div class="cabecalho-pagina"><h2>🕐 Controle de Frequência</h2></div>
+
+      <!-- ETAPA 1: escolher turma + aluno -->
+      <div id="bloco-selecao">
+        <div class="cartao">
+          <div class="linha-form">
+            <div class="campo" style="min-width:220px;">
+              <label>Turma</label>
+              <select id="select-turma-frequencia"><option value="">Selecione uma turma...</option></select>
+            </div>
+            <div class="campo" style="min-width:220px;">
+              <label>Buscar aluno</label>
+              <input id="busca-aluno-frequencia" type="text" placeholder="🔍 Buscar aluno..." disabled>
+            </div>
+          </div>
+          <table>
+            <thead><tr><th>Nº</th><th>Nome do aluno</th><th>Responsável</th><th>Ações</th></tr></thead>
+            <tbody id="tbody-alunos-frequencia"><tr><td colspan="4"><div class="vazio">Selecione uma turma acima para ver os alunos.</div></td></tr></tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- ETAPA 2: histórico + registrar atraso do aluno escolhido -->
+      <div id="bloco-aluno" style="display:none;">
+        <button class="btn btn-ghost btn-sm" id="btn-voltar-selecao" style="margin-bottom:14px;">← Voltar</button>
+        <div class="cabecalho-pagina">
+          <h2>👤 <span id="nome-aluno-detalhe"></span></h2>
+          <span class="badge-turma" id="turma-aluno-detalhe"></span>
+        </div>
+
+        <div style="display:grid; grid-template-columns: 2fr 1fr; gap:20px; align-items:start;">
+          <div class="cartao">
+            <h3 style="margin-top:0;">Histórico de atrasos</h3>
+            <table>
+              <thead><tr><th>Data</th><th>Horário previsto</th><th>Horário de chegada</th><th>Minutos de atraso</th></tr></thead>
+              <tbody id="tbody-historico-aluno"></tbody>
+            </table>
+
+            <h3 style="margin:22px 0 12px;">+ Registrar novo atraso</h3>
+            <form id="form-registrar-atraso">
+              <div class="linha-form">
+                <div class="campo">
+                  <label>Data</label>
+                  <input type="date" id="input-atraso-data" required>
+                </div>
+                <div class="campo">
+                  <label>Horário previsto</label>
+                  <input type="time" id="input-atraso-previsto" required>
+                </div>
+                <div class="campo">
+                  <label>Horário de chegada</label>
+                  <input type="time" id="input-atraso-chegada" required>
+                </div>
+                <button type="button" id="btn-calcular-atraso" class="btn btn-primary">Calcular</button>
+              </div>
+            </form>
+          </div>
+
+          <div>
+            <div class="card-total-atrasos">
+              <div class="rotulo">Total de atrasos</div>
+              <div class="valor" id="total-atrasos-aluno">0</div>
+              <div class="rotulo" style="margin-top:8px;">Total de minutos</div>
+              <div class="valor" id="total-minutos-aluno" style="font-size:20px;">0 min</div>
+            </div>
+            <div class="card-tempo-atraso">
+              <div class="rotulo">Tempo de atraso</div>
+              <div class="valor" id="preview-atraso">0 min</div>
+            </div>
+            <button type="submit" form="form-registrar-atraso" class="btn btn-success btn-full">+ Registrar atraso</button>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
+<script src="js/firebase-config.js"></script>
+<script src="js/common.js"></script>
+<script src="js/frequencia.js"></script>
+</body>
+</html>
